@@ -1,5 +1,9 @@
 # Python script (save as wifi_qr_generator.py)
+from json import load
 import qrcode
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 def generate_wifi_qr(ssid, password, security='WPA'):
     try:
@@ -37,8 +41,8 @@ def generate_wifi_qr(ssid, password, security='WPA'):
         print(f"An unexpected error occurred: {e}")
 
 # Wi-Fi network details
-ssid = "JioFiber-304_5G"
-password = "11223344"
+ssid = os.environ.get("WIFI_SSID")
+password = os.environ.get("WIFI_PASSWORD")
 security = "WPA"  # Can be 'WPA', 'WEP', or '' for open networks
 
 generate_wifi_qr(ssid, password, security)
